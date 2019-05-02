@@ -37,10 +37,10 @@ class User extends Authenticatable
     }
 
 
-/**
- * 激活令牌
- * @return [type] [description]
- */
+    /**
+     * 激活令牌
+     * @return [type] [description]
+     */
     public static function boot()
     {
         parent::boot();
@@ -48,5 +48,15 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->activation_token = str_random(30);
         });
+    }
+
+
+/**
+ * 关联Status
+ * @return [type] [description]
+ */
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
     }
 }
