@@ -51,12 +51,19 @@ class User extends Authenticatable
     }
 
 
-/**
- * 关联Status
- * @return [type] [description]
- */
+    /**
+     * 关联Status
+     * @return [type] [description]
+     */
     public function statuses()
     {
         return $this->hasMany(Status::class);
+    }
+
+
+    public function feed()
+    {
+        return $this->statuses()
+                   ->orderBy('created_at', 'desc');
     }
 }
